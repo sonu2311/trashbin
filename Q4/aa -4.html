@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+<link rel="stylesheet" href="library.css">
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+<style>
+	
+div.hsplit:after {
+content: "";
+clear: both;
+display: table;
+}
+
+div.hsplit > div {
+	float: left;
+}
+</style>
+</head>
+<body ng-app="myApp" ng-controller="myCtrl">
+<div class="hsplit" style="border:solid black 1px" >
+  <div class="hsplit" style="border:solid red 1px" ng-repeat=" x in button_list">
+    <div style="margin-top: 20px;" >{{x+1}}
+      <img src="button_on_off (2).png" ng-if="variable_list[x]==false" style="width:100px;" ng-click="check2(x)">
+      <img src="button_on_off (3).png" ng-if="variable_list[x]==true" style="width:100px;" ng-click="check2(x)">
+    </div>
+    <div style="margin-left:20px;">{{variable_list[x]}}
+        <span class="material-icons" style="font-size:80px;" ng-style="{'color':( variable_list[x] ? 'red':'blue')}">
+        emoji_objects
+        </span>
+    </div>
+  </div>
+</div>
+
+
+<script>
+var app = angular.module('myApp', [])
+app.controller('myCtrl', function($scope) {
+
+  //  x koi bhi positive integer ho skta hai.
+  // is function ka output [0, 1, 2, .... x-1] ayega.
+  // eg: range(5) ka output [0, 1, 2, 3, 4] ayega.
+  var range=function(x){
+    var i=0;
+    var l=[]
+    while (i<x){
+      l.push(i)
+      i+=1
+    }
+    return l
+  }
+
+  console.log(range(10))
+
+  //  x koi bhi positive integer ho skta hai.
+  // is function ka output [true, true, ..., true] ayega total x bar.
+  // eg: all_true(3) ka output [true, true, true] ayega.
+  var all_true=function(x) {
+    var i=0;
+    var l1=[]
+    while (i<x){
+      l1.push(true)
+      i+=1
+    }
+    return l1
+  }
+
+  console.log(all_true(10))
+  console.log(all_true(30))
+		
+  // range(14) ko evaluate krenge to [0, 1, 2, .. 13] ayega.
+  $scope.button_list=range(14)
+
+  $scope.variable_list=all_true(13)
+
+  // @p ek integer hai, vo ki button number represent krta hai.
+  // mtlb, agr front-end me top-left corner me jo button hai, uska
+  // number 0 hai. Us pr click krenge to ye function call hoga aur
+  // input me 0 ayega. mtlb us case me @p ki value 0 hogi.
+  // agr uske bad vale button (jiska number 1 hai) pr click krenge to
+  // jab ye function call hoga to @p ki value 1 ayegi. isi prakar se
+  // uske bad vale button se, 2, 3, 4, ese value ati rhengi, har button ke button-number ke anusar.
+  $scope.check2=function(p) {
+    $scope.variable_list[p]=!$scope.variable_list[p]
+  }
+});
+</script>
+</body>
+</html>

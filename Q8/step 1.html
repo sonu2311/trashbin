@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+<link rel="stylesheet" href="library.css">
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+<style>
+	
+div.hsplit:after {
+content: "";
+clear: both;
+display: table;
+}
+
+div.hsplit > div {
+	float: left;
+}
+.button{
+	border:solid black 1px; padding:10px; margin:10px; border-radius: 4px;
+}
+.header{
+	border:solid black 1px; width:280px; padding: 10px; 
+	text-align: right; height: 15px; 
+}
+.width{
+	width:300px;
+}
+.input{
+	/*border:solid black 1px; */
+	width:285px; text-align: right; padding:5px; 
+}
+
+</style>
+</head>
+<body ng-app="myApp" ng-controller="myCtrl">
+	<div class="width" style="border:solid black 1px; ">
+		<div class="header">{{empty}}
+		</div>
+		<div class="hsplit width" style="border:solid black 1px;">
+			<div style="border:solid black 1px;padding:10px; text-align: center;">
+				<button class="button" ng-click="button_number(x)" ng-repeat="x in list_button">
+					{{x}}
+				</button>
+				<button class="button" ng-click="last_element_remove()"> C</button>	
+			</div>	
+		</div>	
+	</div>
+	
+<script>
+var app = angular.module('myApp', [])
+app.controller('myCtrl', function($scope) {	
+	s = $scope;
+	$scope.list_button=[0,1,2,3,4,5,6,7,8,9]
+
+ 	$scope.empty=""
+ 	 $scope.button_number=function(x){
+ 	 	$scope.empty +=x
+ 	 }
+
+ 	 $scope.last_element_remove=function(){
+ 	 	var a=""
+ 	 	for (i in $scope.empty ){
+		  	if(i != $scope.empty.length-1) {
+		    	a+=$scope.empty[i]
+		    	console.log(a)
+		    	console.log($scope.empty[i])
+		    	console.log(i)
+		    }
+  		}
+		$scope.empty=a   
+ 	}
+
+/* def f(l):
+    l1=[]
+    for i in l:
+        if i!=l[-1]:
+            l1.append(i)
+    return l1 
+print(f([3,5,6,7])) */
+
+	
+});
+</script>
+</body>
+</html>

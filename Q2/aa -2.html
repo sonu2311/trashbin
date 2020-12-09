@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+<link rel="stylesheet" href="library.css">
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+<style>
+	
+div.hsplit:after {
+content: "";
+clear: both;
+display: table;
+}
+
+div.hsplit > div {
+	float: left;
+}
+</style>
+</head>
+<body ng-app="myApp" ng-controller="myCtrl">
+<div class="hsplit">
+  <div style="margin-top: 20px;">
+    <button  style="" ng-click="check()">ON/OFF</button>
+  </div>
+  <div style="margin-left:20px;">
+      <span class="material-icons" style="font-size:80px; color:blue" ng-if="y==true">
+      emoji_objects
+      </span>
+      <span class="material-icons" style="font-size:80px; color:yellow" ng-if="y==false">
+      emoji_objects
+      </span>
+  </div>
+</div>
+
+
+<script>
+var app = angular.module('myApp', [])
+app.controller('myCtrl', function($scope) {
+				$scope.y=true;
+      $scope.check=function(){
+      	$scope.y =!$scope.y
+      }
+
+});
+</script>
+</body>
+</html>

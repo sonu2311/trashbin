@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+<link rel="stylesheet" href="library.css">
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+<style>
+	
+div.hsplit:after {
+content: "";
+clear: both;
+display: table;
+}
+
+div.hsplit > div {
+	float: left;
+}
+.main_div{
+	border:solid blue 1px; width:350px; height:150px;
+	position: relative;
+}
+.button{
+	/*border:solid black 1px;*/
+	/*border-radius: 10px; */
+	margin-left:4px; 
+	margin-top: 2px;
+	
+
+}
+.div_left{
+	border:solid red 1px; float:left; height:150px; opacity: 0.6;width:0px; transition: width 5s; background-color: blue; z-index:7; position: relative;
+}
+.div_right{
+	border:solid black 1px; float:right; height:150px; width:0px; transition: width 5s; background-color: blue; opacity: 0.6;
+}
+.button_div{
+	border:solid black 1px;
+	width:90px; padding:1px; margin-top:80px;
+	position: absolute;
+	bottom:15px;
+	
+}
+.floor_name{
+	border:solid #bbb 1px; 
+	margin-left: 50px; 
+	padding:1px 7px; 
+	position: fixed;left:90px; 
+	font-size: 20px; 
+	font-weight: 700; 
+	background-color: #99e6ff; 
+	color:#333;
+	z-index:8;
+}
+</style>
+</head>
+<body ng-app="myApp" ng-controller="myCtrl">
+	<div style="border:solid red 1px;" class="hsplit">
+		<div style="border:solid red 1px;">
+			<div class="main_div hsplit" ng-repeat="(x,y) in floor_dict"><!-- {{y.floor_number}},{{y.open_close_button}} -->
+				<span class="material-icons" style="font-size:100px; position: absolute; top:10px;">
+					groups
+					</span>
+				<div class="div_left" ng-style="{'width':y.open_close_button ? '173px':'0px'}"></div>
+
+				<!-- <div class="button_div">
+					<button class="position" ng-click="move(x)" >Open/Close</button>
+					<button class="button position2" ng-repeat="(a,b) in floor_dict">{{b.floor_number}}</button>
+					<button class="button">2</button>
+					<button class="button">3</button>
+					<button class="button">4</button>
+				</div> -->
+				<div class="floor_name">Flat-{{y.floor_number}}</div>
+				<div class="div_right" ng-style="{'width':y.open_close_button ? '173px':'0px', 'float': 'right'}"></div>
+			</div>
+		</div>
+		<div style="background-color: #eee">
+			<div style="border:solid black 1px; height: 150px;" ng-repeat="(x, y) in floor_dict" >
+				<button style="margin:5px;" ng-click="move(x)">Open/Close</button>
+			</div> 
+		</div>
+	</div>
+
+<script>
+var app = angular.module('myApp', [])
+app.controller('myCtrl', function($scope) {	
+	// $scope.floor_list=[4,3,2,1]
+	$scope.open_close_button=true;
+	// var all_true=function(x) {
+ //    var i=0;
+ //    var l1=[]
+ //    while (i<x){
+ //      l1.push(true)
+ //      i+=1
+ //    }
+ //    return l1
+ //  }
+ //  $scope.open_close_button=all_true(4)
+ $scope.floor_dict= {
+ 	"floor-4": {"floor_number":4,"open_close_button":true},
+ 	"floor-3": {"floor_number":3,"open_close_button":true},
+ 	"floor-2": {"floor_number":2,"open_close_button":true},
+ 	"floor-1": {"floor_number":1,"open_close_button":true}
+ }
+
+	$scope.move=function(p){
+		$scope.floor_dict[p].open_close_button=!$scope.floor_dict[p].open_close_button
+	}
+
+});
+</script>
+</body>
+</html>

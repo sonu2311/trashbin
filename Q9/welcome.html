@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+<link rel="stylesheet" href="library.css">
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+<style>
+	
+div.hsplit:after {
+content: "";
+clear: both;
+display: table;
+}
+
+div.hsplit > div {
+	float: left;
+}
+body{
+	background-image: url("https://wallpapercave.com/wp/wp1842458.jpg");
+	/*background-size: auto;*/
+	background-size: 1400px 700px;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+    background-position: center;
+}
+</style>
+</head>
+<body ng-app="myApp" ng-controller="myCtrl" >
+	<div style="margin: 20px; float:right; ">
+		<button style="padding:10px 20px; float:right; background-color:#0099ff; border-radius: 4px;  ">Log out</button>
+	</div>
+<script>
+var app = angular.module('myApp', [])
+app.controller('myCtrl', function($scope) {	
+
+});
+</script>
+</body>
+</html>

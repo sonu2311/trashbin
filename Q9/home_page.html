@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+<link rel="stylesheet" href="library.css">
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+<style>
+	
+div.hsplit:after {
+content: "";
+clear: both;
+display: table;
+}
+
+div.hsplit > div {
+	float: left;
+}
+body{
+	background-image: url("https://i.pinimg.com/originals/ad/27/f9/ad27f910d5e04b5ad79da7787052f874.jpg");
+	background-size: auto;
+	background-size: 1400px 700px;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+    background-position: center;
+}
+.button{
+	border:solid #333 1px; padding:10px 20px; float:right; background-color:#0099ff; border-radius: 4px; margin:0px 4px;
+}
+.button:hover{
+	border:solid black 1px;
+}
+</style>
+</head>
+<body ng-app="myApp" ng-controller="myCtrl" >
+	<div style="margin: 20px; float:right; ">
+		<button class="button">Log out</button>
+		<button class="button">Log in</button>
+	</div>
+<script>
+var app = angular.module('myApp', [])
+app.controller('myCtrl', function($scope) {	
+
+});
+</script>
+</body>
+</html>
