@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+<link rel="stylesheet" href="library.css">
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<script src="load_store.js"></script>
+<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+<style>
+	
+div.hsplit:after {
+content: "";
+clear: both;
+display: table;
+}
+
+div.hsplit > div {
+	float: left;
+}
+.main_div{
+	border:solid #ccc 1px; 
+	box-sizing: border-box;
+	margin:20px; width:300px; 
+	position:absolute; top:100px; left:500px; height:300px;
+	box-shadow: 2px 4px 5px #ccc;
+	border-radius:4px; 
+}
+.login_nav_div{
+	text-align: center; font-size: 18px; 
+	font-weight:500; 
+	color:#333; 
+	background-color:#0047b3; padding:9px 0px; 
+	/*border:solid #ccc 1px; */
+	color: #eee; font-family: 'Roboto';
+	box-shadow: 2px 4px 5px #ccc; 
+}
+.login_button{
+	background-color:#0047b3;padding:5px 15px; border-radius: 3px; border:solid #333 1px; color: #eee;
+	outline: none;
+}
+.login_button:hover{
+	cursor:pointer;
+}
+.login_button_div{
+	float:right; margin-top:35px; margin-left:5px; padding:1px 8px;
+
+}
+</style>
+</head>
+<body ng-app="myApp" ng-controller="myCtrl" >
+
+	<div class="main_div">
+		<div class="login_nav_div">Login</div>
+		<div style="margin:6px 0px; ">
+			<div style="padding:0px 10px; margin:15px 0px;">
+				<div style="padding: 7px 0px; font-size: 18px;"
+				>Email</div>
+				<div>
+					<input style="padding: 5px 6px; width:265px; outline: none;" type="text" name="name" ng-model="email">
+				</div>
+			</div>
+			<div style="padding:1px 10px; margin:15px 0px;">
+				<div style="padding: 7px 0px; font-size: 18px;">Password</div>
+				<div>
+					<input style="padding: 5px 6px; width:265px;outline: none;" type="text" name="name" ng-model="password">
+				</div>
+			</div>
+		</div>
+		<div class="login_button_div">
+			<button class="login_button" ng-click=login()>Login</button>
+		</div>
+	</div>
+	<!-- </div> -->
+<script>
+var app = angular.module('myApp', [])
+app.controller('myCtrl', function($scope) {
+	s = $scope
+	$scope.email="sonu2313saini@gmail.com"
+	$scope.password="123"
+
+	$scope.d = load() || {"users":[], "post":[]}
+
+
+	$scope.login=function() {
+		if($scope.Is_valid_email($scope.email,$scope.password, $scope.d.users)){
+			alert($scope.email + " ka login ho chuka h")
+			window.location.href = "welcome.html"
+		}
+		else{
+			alert("Tumhara email ya password galat hai.")
+		}	
+	}
+
+	$scope.Is_valid_email=function(email,password,l) {
+	    for (var i in l){
+	        if (l[i].email==email && l[i].password==password){
+	            return true 
+	        }
+	    }
+	    return false
+	}
+
+});
+</script>
+</body>
+</html>

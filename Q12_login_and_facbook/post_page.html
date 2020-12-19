@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+<link rel="stylesheet" href="library.css">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<script src="load_store.js"></script>
+
+<style>
+	
+div.hsplit:after {
+content: "";
+clear: both;
+display: table;
+}
+div.hsplit > div {
+	float: left;
+}
+textarea {
+  resize: none;
+}
+
+</style>
+</head>
+<body ng-app="myApp" ng-controller="myCtrl">
+	<div style="border:solid red 1px; padding:5px 30px; width:260px; background-color: #f0f0f5;">
+		<div style="margin: 10px 0px;">	
+			<input style="border:none;border-radius: 2px;" type="text" placeholder="name" ng-model="name">	
+		</div>
+		<div>
+			<textarea style="border:solid #e0e0eb 1px; border-radius: 5px;" rows="3" cols="22" ng-model="textarea"></textarea>
+		</div>
+		<button class="btn btn-secondary btn-sm" style="margin:4px 0px;" ng-click="post_submit()">post button</button>
+	</div>
+
+<script>
+var app = angular.module('myApp', [])
+app.controller('myCtrl', function($scope) {
+	s = $scope
+	$scope.name="sonu"
+	$scope.textarea="my name"
+	// $scope.list_post_detail=load() || []
+
+	$scope.d = load() || {"users":[], "post":[]}
+
+	$scope.post_submit=function(){
+		$scope.d.post.push({"name":$scope.name,"textarea":$scope.textarea,"like":0,"comments":[], "comment_text":""})
+		save($scope.d)
+		window.location.href = "facebook_like.html"
+	}
+
+
+	
+
+});
+</script>
+</body>
+</html>

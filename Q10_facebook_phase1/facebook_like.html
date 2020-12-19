@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+<link rel="stylesheet" href="library.css">
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<script src="load_store.js"></script>
+
+<style>
+	
+div.hsplit:after {
+content: "";
+clear: both;
+display: table;
+}
+
+div.hsplit > div {
+	float: left;
+}
+textarea {
+  resize: none;
+}
+.add_post{
+	margin:4px 0px
+}
+.add_post:hover{
+	cursor: pointer;
+}
+.all_body_div{
+	 padding:10px; width:300px;
+}
+.repeated_div{
+	width:270px;  box-shadow: 1px 1px 4px grey; padding:5px; border-radius: 2px; margin: 15px 0px;
+}
+.name_div{
+	width:50px;padding:2px;
+}
+.taxtarea_div{
+	margin:5px 0px; padding:3px;
+}
+.icon_class{
+	color:#3578E5; font-size:20px; margin-left:4px; margin-top:4px;
+}
+.icon_class:hover{
+	cursor: pointer;
+}
+.like_number{
+	padding:5px 1px;width:40px;font-size: 16px;
+}
+</style>
+</head>
+<body ng-app="myApp" ng-controller="myCtrl" >
+	
+<div class="all_body_div">
+	<div style="margin-left: 10px;">
+		<a href="post_page.html">
+			<button class="add_post">Add post
+			</button>
+		</a>
+		<div class="repeated_div"ng-repeat='x in list_post_detail'>
+			<div class="name_div">{{x.name}}</div>
+			<div class="taxtarea_div">{{x.textarea}}</div>
+			<div style=" text-align:center;" class="hsplit">
+				<div>
+					<span class="material-icons icon_class" ng-click="add_like_number($index)">
+					thumb_up_alt
+					</span>
+				</div>
+				<div class="like_number">
+					{{x.like}}
+				</div>	
+			</div>	
+		</div>
+	</div>
+</div>
+	
+<script>
+var app = angular.module('myApp', [])
+app.controller('myCtrl', function($scope) {
+	s = $scope
+	$scope.list_post_detail = load() || []
+
+	$scope.add_like_number=function(x) {
+		$scope.list_post_detail[x].like += 1
+		save($scope.list_post_detail)
+	}
+});
+</script>
+</body>
+</html>

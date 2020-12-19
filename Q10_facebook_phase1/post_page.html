@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+<link rel="stylesheet" href="library.css">
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<script src="load_store.js"></script>
+
+<style>
+	
+div.hsplit:after {
+content: "";
+clear: both;
+display: table;
+}
+div.hsplit > div {
+	float: left;
+}
+textarea {
+  resize: none;
+}
+
+</style>
+</head>
+<body ng-app="myApp" ng-controller="myCtrl">
+	<div style="margin: 15px 0px;">	
+		<input type="text" placeholder="name" ng-model="name">	
+	</div>
+	<div>
+		<textarea style="" rows="3" cols="20" ng-model="textarea"></textarea>
+	</div>
+	<button style="margin:4px 0px;" ng-click="post_submit()">post button</button>
+<script>
+var app = angular.module('myApp', [])
+app.controller('myCtrl', function($scope) {
+	s = $scope
+	$scope.name="sonu"
+	$scope.textarea="my name"
+	$scope.list_post_detail=load() || []
+
+	$scope.post_submit=function(){
+		$scope.list_post_detail.push({"name":$scope.name,"textarea":$scope.textarea,"like":0})
+		save($scope.list_post_detail)
+		window.location.href = "facebook_like.html"
+	}
+
+
+	
+
+});
+</script>
+</body>
+</html>
